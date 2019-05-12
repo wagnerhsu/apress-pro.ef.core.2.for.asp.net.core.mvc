@@ -20,9 +20,15 @@ namespace PartyInvites {
 
         public void ConfigureServices(IServiceCollection services) {
             services.AddMvc();
+
+#if true
+            services.AddDbContext<DataContext>(c =>
+        c.UseInMemoryDatabase("PartyInvites"));
+#else
             string conString = Configuration["ConnectionStrings:DefaultConnection"];
             services.AddDbContext<DataContext>(options =>
                 options.UseSqlServer(conString));
+#endif
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env) {
