@@ -29,6 +29,9 @@
                        asp-route-firstname="@e.FirstName"
                        asp-route-familyname="@e.FamilyName"
                        class="btn btn-sm btn-primary">Edit</a>
+                    <a asp-action="Delete" asp-route-ssn="@e.SSN"
+                       asp-route-firstname="@e.FirstName"
+                       asp-route-familyname="@e.FamilyName" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
         }
