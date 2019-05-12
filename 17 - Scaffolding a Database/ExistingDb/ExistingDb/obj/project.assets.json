@@ -12535,33 +12535,41 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\adam\\.nuget\\packages\\": {},
+    "C:\\Users\\wagne\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\adam\\Documents\\Books\\Pro Entity Framework Core for MVC Developers\\Source Code\\Current\\ExistingDb\\ExistingDb\\ExistingDb.csproj",
+      "projectUniqueName": "E:\\GitHub\\Public\\Apress\\apress-pro.ef.core.2.for.asp.net.core.mvc\\17 - Scaffolding a Database\\ExistingDb\\ExistingDb\\ExistingDb.csproj",
       "projectName": "ExistingDb",
-      "projectPath": "C:\\Users\\adam\\Documents\\Books\\Pro Entity Framework Core for MVC Developers\\Source Code\\Current\\ExistingDb\\ExistingDb\\ExistingDb.csproj",
-      "packagesPath": "C:\\Users\\adam\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\adam\\Documents\\Books\\Pro Entity Framework Core for MVC Developers\\Source Code\\Current\\ExistingDb\\ExistingDb\\obj\\",
+      "projectPath": "E:\\GitHub\\Public\\Apress\\apress-pro.ef.core.2.for.asp.net.core.mvc\\17 - Scaffolding a Database\\ExistingDb\\ExistingDb\\ExistingDb.csproj",
+      "packagesPath": "C:\\Users\\wagne\\.nuget\\packages\\",
+      "outputPath": "E:\\GitHub\\Public\\Apress\\apress-pro.ef.core.2.for.asp.net.core.mvc\\17 - Scaffolding a Database\\ExistingDb\\ExistingDb\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
+        "C:\\Microsoft\\Xamarin\\NuGet\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\adam\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\wagne\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Users\\adam\\.dotnet\\NuGetFallbackFolder": {},
+        "http://localhost:8624/nuget/WagnerNuGetServer/": {},
         "https://api.nuget.org/v3/index.json": {},
-        "https://www.myget.org/F/aspnet-contrib/api/v3/index.json": {}
+        "https://dotnetfeed.blob.core.windows.net/aspnet-aspnetcore-tooling/index.json": {},
+        "https://dotnetfeed.blob.core.windows.net/aspnet-aspnetcore/index.json": {},
+        "https://dotnetfeed.blob.core.windows.net/aspnet-entityframeworkcore/index.json": {},
+        "https://dotnetfeed.blob.core.windows.net/aspnet-extensions/index.json": {},
+        "https://dotnetfeed.blob.core.windows.net/dotnet-core/index.json": {},
+        "https://dotnetfeed.blob.core.windows.net/dotnet-windowsdesktop/index.json": {}
       },
       "frameworks": {
         "netcoreapp2.0": {
@@ -12582,6 +12590,7 @@
             "version": "[2.0.5, )"
           },
           "Microsoft.NETCore.App": {
+            "suppressParent": "All",
             "target": "Package",
             "version": "[2.0.0, )",
             "autoReferenced": true
