@@ -113,3 +113,5 @@ PowerEditor/src/MISC/md5/RCa06792
 
 /MHLicense/LicenseControl/temp/LicenseTool.exe
 
+bin/
+obj/
