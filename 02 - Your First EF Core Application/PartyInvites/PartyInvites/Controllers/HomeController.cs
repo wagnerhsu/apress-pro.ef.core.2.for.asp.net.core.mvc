@@ -18,7 +18,7 @@ namespace PartyInvites.Controllers {
             context.Responses.Add(response);
             context.SaveChanges();
             return RedirectToAction(nameof(Thanks), 
-                new { Name = response.Name, WillAttend = response.WillAttend });
+                new { Name = response.Name, WillAttend = response.WillAttend , Email  = response.Email});
         }
 
         public IActionResult Thanks(GuestResponse response) => View(response);
