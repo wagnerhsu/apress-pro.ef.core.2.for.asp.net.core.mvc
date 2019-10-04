@@ -3,23 +3,28 @@ using Microsoft.EntityFrameworkCore;
 using SportsStore.Models;
 using System.Linq;
 
-namespace SportsStore.Controllers {
+namespace SportsStore.Controllers
+{
 
-    public class SeedController : Controller {
+    public class SeedController : Controller
+    {
         private DataContext context;
 
         public SeedController(DataContext ctx) => context = ctx;
 
-        public IActionResult Index() {
+        public IActionResult Index()
+        {
             ViewBag.Count = context.Products.Count();
             return View(context.Products
                 .Include(p => p.Category).OrderBy(p => p.Id).Take(20));
         }
-            
+
         [HttpPost]
-        public IActionResult CreateSeedData(int count) {
+        public IActionResult CreateSeedData(int count)
+        {
             ClearData();
-            if (count > 0) {
+            if (count > 0)
+            {
                 context.Database.SetCommandTimeout(System.TimeSpan.FromMinutes(10));
                 context.Database
                     .ExecuteSqlCommand("DROP PROCEDURE IF EXISTS CreateSeedData");
@@ -66,7 +71,8 @@ namespace SportsStore.Controllers {
         }
 
         [HttpPost]
-        public IActionResult ClearData() {
+        public IActionResult ClearData()
+        {
             context.Database.SetCommandTimeout(System.TimeSpan.FromMinutes(10));
             context.Database.BeginTransaction();
             context.Database.ExecuteSqlCommand("DELETE FROM Orders");

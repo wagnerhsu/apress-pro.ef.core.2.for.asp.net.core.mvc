@@ -19,9 +19,10 @@ namespace SportsStore {
         public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services) {
-            services.AddMvc().AddJsonOptions(opts =>
-                opts.SerializerSettings.ReferenceLoopHandling 
+            services.AddMvc(x => x.EnableEndpointRouting = false)
+                .AddNewtonsoftJson(opts => opts.SerializerSettings.ReferenceLoopHandling
                     = ReferenceLoopHandling.Serialize);
+                
             services.AddTransient<IRepository, DataRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IOrdersRepository, OrdersRepository>();

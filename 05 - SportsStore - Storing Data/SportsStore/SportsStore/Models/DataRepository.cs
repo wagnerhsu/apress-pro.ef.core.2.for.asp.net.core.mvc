@@ -9,7 +9,7 @@ namespace SportsStore.Models
 
         public DataRepository(DataContext ctx) => context = ctx;
 
-        public IQueryable<Product> Products => context.Products;
+        public IEnumerable<Product> Products => context.Products.ToArray();
 
         public void AddProduct(Product product)
         {

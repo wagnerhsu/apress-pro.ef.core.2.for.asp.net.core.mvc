@@ -3,6 +3,10 @@
 namespace SportsStore.Models {
 
     public class Order {
+        public Order()
+        {
+            Lines = new HashSet<OrderLine>();
+        }
         public long Id { get; set; }
         public string CustomerName { get; set; }
         public string Address { get; set; }

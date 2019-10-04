@@ -9,7 +9,8 @@
 </div>
 @{ int i = 0; }
 <form asp-action="UpdateAll" method="post">
-    @foreach (Product p in Model) {
+    @foreach (Product p in Model)
+    {
         <div class="row p-2">
             <div class="col-1">
                 @p.Id

@@ -30,7 +30,8 @@
         <div class="col font-weight-bold text-right">Purchase</div>
         <div class="col font-weight-bold text-right">Retail</div>
     </div>
-    @foreach (Product p in Model) {
+    @foreach (Product p in Model)
+    {
         <div class="row">
             <div class="col-1">@p.Id</div>
             <div class="col">@p.Name</div>

@@ -10,15 +10,18 @@ using SportsStore.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace SportsStore {
-    public class Startup {
+namespace SportsStore
+{
+    public class Startup
+    {
 
         public Startup(IConfiguration config) => Configuration = config;
 
         public IConfiguration Configuration { get; }
 
-        public void ConfigureServices(IServiceCollection services) {
-            services.AddMvc();
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddMvc(x => x.EnableEndpointRouting = false);
             services.AddTransient<IRepository, DataRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IOrdersRepository, OrdersRepository>();
@@ -26,19 +29,22 @@ namespace SportsStore {
             services.AddDbContext<DataContext>(options =>
                 options.UseSqlServer(conString));
 
-            services.AddDistributedSqlServerCache(options => {
+            services.AddDistributedSqlServerCache(options =>
+            {
                 options.ConnectionString = conString;
                 options.SchemaName = "dbo";
                 options.TableName = "SessionData";
             });
-            services.AddSession(options => {
+            services.AddSession(options =>
+            {
                 options.Cookie.Name = "SportsStore.Session";
                 options.IdleTimeout = System.TimeSpan.FromHours(48);
                 options.Cookie.HttpOnly = false;
             });
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env) {
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
             app.UseStaticFiles();
