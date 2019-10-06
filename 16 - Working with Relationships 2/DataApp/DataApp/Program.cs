@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using DataApp.Models;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace DataApp
 {
@@ -14,7 +9,19 @@ namespace DataApp
     {
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+            var host = BuildWebHost(args);
+            EnsureDatabaseExist(host);
+            host.Run();
+        }
+
+        private static void EnsureDatabaseExist(IWebHost host)
+        {
+            var scope = host.Services.CreateScope();
+            var customerContext = scope.ServiceProvider.GetRequiredService<EFCustomerContext>();
+            customerContext.Database.EnsureCreated();
+
+            var dataContext = scope.ServiceProvider.GetRequiredService<EFDatabaseContext>();
+            dataContext.Database.EnsureCreated();
         }
 
         public static IWebHost BuildWebHost(string[] args) =>

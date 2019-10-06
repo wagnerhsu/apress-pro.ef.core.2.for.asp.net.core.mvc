@@ -1,51 +1,50 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using DataApp.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection;
-using DataApp.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace DataApp {
-    public class Startup {
-
+namespace DataApp
+{
+    public class Startup
+    {
         public Startup(IConfiguration config) => Configuration = config;
 
         public IConfiguration Configuration { get; }
 
-        public void ConfigureServices(IServiceCollection services) {
-            services.AddMvc();
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddMvc(x => x.EnableEndpointRouting = false).AddNewtonsoftJson(); 
             string conString = Configuration["ConnectionStrings:DefaultConnection"];
             services.AddDbContext<EFDatabaseContext>(options =>
                 options.UseSqlServer(conString));
 
-            string customerConString = 
+            string customerConString =
                 Configuration["ConnectionStrings:CustomerConnection"];
             services.AddDbContext<EFCustomerContext>(options =>
                 options.UseSqlServer(customerConString));
 
-            services.AddTransient<IDataRepository, EFDataRepository>();
-            services.AddTransient<ICustomerRepository, EFCustomerRepository>();
-            services.AddTransient<MigrationsManager>();
-            services.AddTransient<ISupplierRepository, SupplierRepository>();
-            services.AddTransient<IGenericRepository<ContactDetails>, 
+            services.AddScoped<IDataRepository, EFDataRepository>();
+            services.AddScoped<ICustomerRepository, EFCustomerRepository>();
+            services.AddScoped<MigrationsManager>();
+            services.AddScoped<ISupplierRepository, SupplierRepository>();
+            services.AddScoped<IGenericRepository<ContactDetails>,
                 GenericRepository<ContactDetails>>();
-            services.AddTransient<IGenericRepository<ContactLocation>,
+            services.AddScoped<IGenericRepository<ContactLocation>,
                 GenericRepository<ContactLocation>>();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, 
-                EFDatabaseContext prodCtx, EFCustomerContext custCtx) {
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,
+                EFDatabaseContext prodCtx, EFCustomerContext custCtx)
+        {
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
             app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
 
-            if (env.IsDevelopment()) {
+            if (env.IsDevelopment())
+            {
                 SeedData.Seed(prodCtx);
                 SeedData.Seed(custCtx);
             }
