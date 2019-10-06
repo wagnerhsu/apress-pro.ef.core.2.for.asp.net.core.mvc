@@ -1,25 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using ExistingDb.Models.Manual;
+using ExistingDb.Models.Scaffold;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Configuration;
-using ExistingDb.Models.Scaffold;
 using Microsoft.EntityFrameworkCore;
-using ExistingDb.Models.Manual;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace ExistingDb {
-    public class Startup {
-        
+namespace ExistingDb
+{
+    public class Startup
+    {
         public Startup(IConfiguration config) => Configuration = config;
 
         public IConfiguration Configuration { get; }
 
-        public void ConfigureServices(IServiceCollection services) {
-            services.AddMvc();
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddMvc(x => x.EnableEndpointRouting = false);
             string conString = Configuration["ConnectionStrings:DefaultConnection"];
 
             services.AddDbContext<ScaffoldContext>(options =>
@@ -29,11 +26,12 @@ namespace ExistingDb {
                 options.UseSqlServer(conString));
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env) {
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
             app.UseStaticFiles();
-            app.UseMvcWithDefaultRoute();        
+            app.UseMvcWithDefaultRoute();
         }
     }
 }
