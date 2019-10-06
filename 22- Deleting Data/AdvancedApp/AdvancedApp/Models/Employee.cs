@@ -1,8 +1,9 @@
 ﻿using System;
 
-namespace AdvancedApp.Models {
-
-    public class Employee {
+namespace AdvancedApp.Models
+{
+    public class Employee
+    {
         private decimal databaseSalary;
 
         public long Id { get; set; }
@@ -10,7 +11,8 @@ namespace AdvancedApp.Models {
         public string FirstName { get; set; }
         public string FamilyName { get; set; }
 
-        public decimal Salary {
+        public decimal Salary
+        {
             get => databaseSalary;
             set => databaseSalary = value;
         }

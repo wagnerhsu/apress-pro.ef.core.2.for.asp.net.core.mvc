@@ -15,7 +15,8 @@
     </thead>
     <tbody>
         <tr class="placeholder"><td colspan="4" class="text-center">No Data</td></tr>
-        @foreach (Employee e in Model) {
+        @foreach (Employee e in Model)
+        {
             <tr>
                 <td>@e.SSN</td>
                 <td>@e.FirstName</td>

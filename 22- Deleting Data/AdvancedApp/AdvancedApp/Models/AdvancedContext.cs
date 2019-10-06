@@ -1,17 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 
-namespace AdvancedApp.Models {
-
-    public class AdvancedContext : DbContext {
-
+namespace AdvancedApp.Models
+{
+    public class AdvancedContext : DbContext
+    {
         public AdvancedContext(DbContextOptions<AdvancedContext> options)
-            : base(options) {}
+            : base(options) { }
 
         public DbSet<Employee> Employees { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder) {
-
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
             modelBuilder.Entity<Employee>()
                 .HasQueryFilter(e => !e.SoftDeleted);
 
@@ -23,7 +23,7 @@ namespace AdvancedApp.Models {
                 .Property(e => e.Salary).HasColumnType("decimal(8,2)")
                 .HasField("databaseSalary")
                 .UsePropertyAccessMode(PropertyAccessMode.Field);
-                //.IsConcurrencyToken();
+            //.IsConcurrencyToken();
 
             modelBuilder.Entity<Employee>().Property<DateTime>("LastUpdated")
                 .HasDefaultValue(new DateTime(2000, 1, 1));
@@ -34,10 +34,18 @@ namespace AdvancedApp.Models {
             modelBuilder.Entity<SecondaryIdentity>()
                 .HasOne(s => s.PrimaryIdentity)
                 .WithOne(e => e.OtherIdentity)
-                .HasPrincipalKey<Employee>(e => new { e.SSN, 
-                     e.FirstName, e.FamilyName })
-                .HasForeignKey<SecondaryIdentity>(s => new { s.PrimarySSN, 
-                     s.PrimaryFirstName, s.PrimaryFamilyName })
+                .HasPrincipalKey<Employee>(e => new
+                {
+                    e.SSN,
+                    e.FirstName,
+                    e.FamilyName
+                })
+                .HasForeignKey<SecondaryIdentity>(s => new
+                {
+                    s.PrimarySSN,
+                    s.PrimaryFirstName,
+                    s.PrimaryFamilyName
+                })
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<SecondaryIdentity>()
