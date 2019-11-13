@@ -19,9 +19,11 @@ namespace DataApp
             var scope = host.Services.CreateScope();
             var customerContext = scope.ServiceProvider.GetRequiredService<EFCustomerContext>();
             customerContext.Database.EnsureCreated();
+            SeedData.Seed(customerContext);
 
             var dataContext = scope.ServiceProvider.GetRequiredService<EFDatabaseContext>();
             dataContext.Database.EnsureCreated();
+            SeedData.Seed(dataContext);
         }
 
         public static IWebHost BuildWebHost(string[] args) =>
