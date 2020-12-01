@@ -119,3 +119,4 @@ bin/
 obj/
 lib/
 obj/
+.vscode/
